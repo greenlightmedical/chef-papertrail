@@ -52,6 +52,7 @@ template '/etc/log_files.yml' do
 end
 
 service 'remote_syslog' do
+  provider Chef::Provider::Service::Systemd
   action [:start, :enable]
   subscribes :restart, 'package[#{pkg_name}]', :delayed
 end
